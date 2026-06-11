@@ -20,11 +20,11 @@ jobs:
       - name: Build
         run: cmake --build build --config Release
 
-      - name: Show build output
-        run: dir build /s
+      - name: Show files
+        run: cmd /c dir build /s
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: NormalToHeight
-          path: build/**/*.exe
+          path: build/bin/NormalToHeight.exe
