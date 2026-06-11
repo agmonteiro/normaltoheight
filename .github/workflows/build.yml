@@ -26,13 +26,14 @@ jobs:
       - name: Package
         shell: powershell
         run: |
-          Copy-Item build\bin\NormalToHeight.exe build\bin\
-
+          New-Item -ItemType Directory -Force dist
+      
+          Copy-Item build\bin\NormalToHeight.exe dist\
+      
           Get-ChildItem -Recurse build -Filter *.dll |
-            Copy-Item -Destination build\bin
-
-      - name: Upload
-        uses: actions/upload-artifact@v4
+            Copy-Item -Destination dist
+      
+      - uses: actions/upload-artifact@v4
         with:
           name: NormalToHeight-windows
-          path: build/bin
+          path: dist
